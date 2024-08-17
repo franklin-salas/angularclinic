@@ -1,0 +1,33 @@
+<mat-select
+[disabled]="disabled"
+[multiple]="multiple"
+[id]="id"
+[value]="optionSelect"
+(selectionChange)="onValueChange($event)"
+(blur)="onTouch()"
+[placeholder]="placeholder"
+[compareWith]="compareTo"
+(infiniteScroll)="getNextBatch()" [complete]="total === data.length" msInfiniteScroll
+>
+<!--   -->
+<mat-option>
+    <ngx-mat-select-search
+      [formControl]="searchCtrl"
+      placeholderLabel="search"
+      noEntriesFoundLabel="No entry matches"
+    >
+    </ngx-mat-select-search>
+  </mat-option>
+  
+
+<ng-container *ngFor="let option of options$ | async">
+  <mat-option [value]="!keyAttr ? option : option[keyAttr]">
+    {{ !displayAttr?option: option[displayAttr]}}
+  </mat-option>
+</ng-container>
+
+<mat-select (infiniteScroll)="getNextBatch()" [complete]="offset === data.length" msInfiniteScroll>
+  <mat-option *ngFor="let option of options$ | async" [value]="option">{{option}}</mat-option>
+</mat-select>
+
+</mat-select>

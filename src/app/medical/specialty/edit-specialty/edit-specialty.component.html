@@ -1,0 +1,107 @@
+<div class="page-wrapper">
+    <div class="content">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="routes.specialtyList">Especialidad </a></li>
+                        <li class="breadcrumb-item"><i class="feather icon-chevron-right"></i></li>
+                        <li class="breadcrumb-item active">Agregar Especialidad</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <div class="row">
+            <div class="col-12">
+            
+                <div class="card">
+                    <div class="card-body">
+                        <form  [formGroup]="form" (ngSubmit)="formSubmit()">
+                            <div class="row  justify-content-center">
+                                <div class="col-12">
+                                    <div class="form-heading">
+                                        <h4>Registrar Especialidad </h4>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-10 col-xl-10   ">  
+                                    <div class="form-group local-forms">
+                                        <label for="departmet"> Nombre<span class="login-danger">*</span></label>
+                                        <input class="form-control" 
+                                        formControlName="name"
+                                        type="text" name="name" id="name"
+                                        [ngClass]="{
+                                            'is-invalid':(f['name'].touched && f['name'].invalid) 
+                                          }"
+                                           >
+                                           <div
+                                           *ngIf="f['name'].touched && f['name'].invalid"
+                                           class="invalid-feedback"
+                                           >
+                                             <div
+                                             *ngIf="f['name'].errors && f['name'].errors['required']"
+                                             >
+                                               El campo es requerido.
+                                             </div>
+                                             <div
+                                            *ngIf="f['name'].errors && f['name'].errors['maxlength']"
+                                          >
+                                            La maxima cantidad de caracteres es 255.
+                                          </div>
+                                           </div>
+                                    </div>
+                                </div>
+                               
+                                <div class="col-12 col-md-10 col-xl-10 ">
+                                    <div class="form-group select-gender">
+                                        <label for="Status" class="gen-label">Estado <span class="login-danger">*</span></label>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" name="status"  formControlName="status"  value="ACTIVO"
+                                                [ngClass]="{
+                                                    'is-invalid':(f['status'].touched && f['status'].invalid) 
+                                                  }"  class="form-check-input">Activo
+                                            </label>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" name="status" formControlName="status"  value="INACTIVO"
+                                                [ngClass]="{
+                                                    'is-invalid':(f['status'].touched && f['status'].invalid) 
+                                                  }" class="form-check-input">Inactivo
+                                            </label>
+                                        </div>
+                                        <div
+                                        *ngIf="f['status'].touched && f['status'].invalid"
+                                        class="invalid-ckeck"
+                                        >
+                                          <div
+                                          *ngIf="f['status'].errors && f['status'].errors['required']"
+                                          >
+                                            El campo es requerido.
+                                          </div>
+                                          
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-10 col-xl-10 ">
+                                    <div class="doctor-submit text-end">
+                                        <button type="submit"
+                                        [disabled]="form.touched && form.invalid "
+                                         class="btn btn-primary submit-form me-2">Guardar</button>
+                                        <button type="submit"
+                                        (click)="onCancel()"
+                                         class="btn btn-primary cancel-form">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>							
+            </div>					
+        </div>
+    </div>
+</div>

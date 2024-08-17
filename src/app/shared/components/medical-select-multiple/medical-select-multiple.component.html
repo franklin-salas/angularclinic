@@ -1,0 +1,15 @@
+<mat-select
+[disabled]="disabled"
+ multiple
+[value]="option"
+(selectionChange)="onValueChange($event)"
+(blur)="onTouch()"
+[compareWith]="compareTo"
+>
+
+<ng-container *ngFor="let option of data">
+  <mat-option [value]="!keyAttr ? option : option[keyAttr]">
+    {{ !displayAttr?option: option[displayAttr]}}
+  </mat-option>
+</ng-container>
+</mat-select>

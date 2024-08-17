@@ -1,0 +1,145 @@
+<div class="page-wrapper">
+    <div class="content">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a [routerLink]="routes.roleUserList">Roles y Permisos </a></li>
+                        <li class="breadcrumb-item"><i class="feather icon-chevron-right"></i></li>
+                        <li class="breadcrumb-item active">Editar Rol</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <div class="row">
+            <div class="col-sm-12">
+            
+                <div class="card">
+                    <div class="card-body">
+                        <form [formGroup]="form" (ngSubmit)="formSubmit()">
+                            <div class="row justify-content-center">
+                                <div class="col-12">
+                                    <div class="form-heading">
+                                        <h4>Actualizar Rol</h4>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-10 ">  
+                                    <div class="form-group local-forms">
+                                        <label >Nombre <span class="login-danger">*</span></label>
+                                        <input 
+                                        class="form-control" 
+                                        formControlName="name" 
+                                        type="text" 
+                                        [ngClass]="{
+                                            'is-invalid':( f['name'].touched && f['name'].invalid)
+                                          }"
+                                        >
+                                        <div
+                                        *ngIf="f['name'].touched && f['name'].invalid"
+                                        class="invalid-feedback"
+                                        >
+                                          <div
+                                          *ngIf="f['name'].errors && f['name'].errors['required']"
+                                          >
+                                            El campo es requerido.
+                                          </div>
+                                          <div
+                                            *ngIf="f['name'].errors && f['name'].errors['maxlength']"
+                                          >
+                                            La maxima cantidad de caracteres es 255.
+                                          </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-10">
+                                    <div class="doctor-submit text-end">
+                                        <button 
+                                        class="btn btn-primary submit-form me-2" 
+                                        [disabled]="form.invalid && form.touched"
+                                        type="submit">Guardar</button>
+                                        <button type="button" class="btn btn-primary cancel-form" (click)="onCancel()">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>							
+            </div>					
+        </div>
+
+    
+        <div class="row">
+            <div class="col-sm-12">
+            
+                <div class="card card-table show-entire">
+                    <div class="card-body">
+                    
+                        <!-- Table Header -->
+                        <div class="page-table-header mb-2">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <div class="doctor-table-blk">
+                                        <h3>Asignación de Permisos</h3>
+                                     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Table Header -->
+                        
+                        <div class="table-responsive">
+                            <table matSort  class="table border-0 custom-table comman-table datatable mb-0">
+                                <thead>
+                                    <tr>                                     
+                                        <th >Sección</th>
+                                        <th >Permisos</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let side of sideBar">
+                                        <tr>
+                                            <td>
+                                               {{ side.menuValue}}
+                                            </td>
+                                            <td>
+                                             
+                                                <div *ngIf="side.subMenus && side.subMenus.length > 0">
+                                                <ng-container *ngFor="let subMenu of side.subMenus">
+                                                    <div class="form-check check-tables">
+                                                        <label><input class="form-check-input" type="checkbox"  [checked]="permissions.includes(subMenu.permision)" (click)="addPermission(subMenu)"
+                                                            name="checkbox"> {{subMenu.menuValue}}</label>
+                                                        
+                                                    </div>
+                                                </ng-container>
+                                                </div>
+                                               
+                                                <div *ngIf="side.subMenus && side.subMenus.length == 0">
+                                                    <div class="form-check check-tables">
+                                                        <label><input class="form-check-input"  name="checkbox" type="checkbox"  [checked]="permissions.includes(side.permision)"(click)="addPermission(side)"> {{side.menuValue}}</label>
+                                                        
+                                                    </div>
+                                                </div>
+                                              
+                                              
+                                            </td>
+                                          </tr>
+                                    </ng-container>
+                                 
+                                </tbody>
+                            </table>
+                            <div class="table_footer">
+                
+                              </div>
+                        </div>
+                    </div>
+                </div>							
+            </div>					
+        </div>
+
+    </div>
+</div>

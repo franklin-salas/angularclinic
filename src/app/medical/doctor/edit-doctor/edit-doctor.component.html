@@ -1,0 +1,524 @@
+<div class="page-wrapper">
+    <div class="content">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="routes.doctorList">Doctor </a></li>
+                        <li class="breadcrumb-item"><i class="feather icon-chevron-right"></i></li>
+                        <li class="breadcrumb-item active">Editar Doctor</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <div class="row">
+            <div class="col-sm-12">
+            
+                <div class="card">
+                    <div class="card-body">
+                        <form [formGroup]="form" (ngSubmit)="formSubmit()">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-heading">
+                                        <h4>Registrar Doctor</h4>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">  
+                                    <div class="form-group local-forms">
+                                        <label for="name">Nombres <span class="login-danger">*</span></label>
+                                        <input class="form-control"
+                                         formControlName="name"
+                                         type="text" name="name" id="name"
+                                         [ngClass]="{
+                                            'is-invalid':(f['name'].touched && f['name'].invalid) 
+                                          }"
+                                            >
+                                            <div
+                                            *ngIf="f['name'].touched && f['name'].invalid"
+                                            class="invalid-feedback"
+                                            >
+                                              <div
+                                              *ngIf="f['name'].errors && f['name'].errors['required']"
+                                              >
+                                                El campo es requerido.
+                                              </div>
+                                             
+                                            </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label  for="last_name">Apellidos  <span class="login-danger">*</span></label>
+                                        <input class="form-control" 
+                                        formControlName="last_name"
+                                        type="text" name="last_name" id="last_name"
+                                        [ngClass]="{
+                                            'is-invalid':(f['last_name'].touched && f['last_name'].invalid) 
+                                          }">
+                                          <div
+                                        *ngIf="f['last_name'].touched && f['last_name'].invalid"
+                                        class="invalid-feedback"
+                                        >
+                                          <div
+                                          *ngIf="f['last_name'].errors && f['last_name'].errors['required']"
+                                          >
+                                            El campo es requerido.
+                                          </div>
+                                          <div
+                                            *ngIf="f['last_name'].errors && f['last_name'].errors['maxlength']"
+                                          >
+                                            La maxima cantidad de caracteres es 150.
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label  for="document">Nit/CI </label>
+                                        <input class="form-control"
+                                        formControlName="document"
+                                        type="text" name="document" id="document"
+                                        [ngClass]="{
+                                            'is-invalid':(f['document'].touched && f['document'].invalid) 
+                                          }" >
+                                          <div
+                                        *ngIf="f['document'].touched && f['document'].invalid"
+                                        class="invalid-feedback"
+                                        >
+                                    
+                                          <div
+                                            *ngIf="f['document'].errors && f['document'].errors['maxlength']"
+                                          >
+                                            La maxima cantidad de caracteres es 50.
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="form-group local-forms">
+                                         <label  for="mobile" >Telefono <span class="login-danger">*</span></label>
+                                        <input class="form-control"
+                                        formControlName="mobile"
+                                        type="text" name="mobile"  id="mobile"
+                                        [ngClass]="{
+                                            'is-invalid':(f['mobile'].touched && f['mobile'].invalid) 
+                                          }" >
+
+                                          <div
+                                          *ngIf="f['mobile'].touched && f['mobile'].invalid"
+                                          class="invalid-feedback"
+                                          >
+                                      
+                                            <div
+                                              *ngIf="f['mobile'].errors && f['mobile'].errors['required']"
+                                            >
+                                            El campo es requerido.
+                                            </div>
+                                            <div
+                                            *ngIf="f['mobile'].errors && f['mobile'].errors['maxlength']"
+                                          >
+                                            La maxima cantidad de caracteres es 20.
+                                          </div>
+                                          </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="form-group local-forms">
+                                        <label for="email" >Correo <span class="login-danger">*</span></label>
+                                        <input class="form-control"
+                                        formControlName="email" 
+                                        type="email" name="email" id="email"
+                                        [ngClass]="{
+                                            'is-invalid':(f['email'].touched && f['email'].invalid) 
+                                          }"   >
+                                          <div
+                                          *ngIf="f['email'].touched && f['email'].invalid"
+                                          class="invalid-feedback"
+                                          >
+                                          <div
+                                            *ngIf="f['email'].errors && f['email'].errors['email']"
+                                            >
+                                              El correo no es valido.
+                                            </div>
+                                            <div
+                                            *ngIf="f['email'].errors && f['email'].errors['required']"
+                                            >
+                                              El campo es requerido.
+                                            </div>
+                                            
+                                          </div>
+                                            
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="form-group local-forms">
+                                        <label  for="password">Contraseña</label>
+                                        <input class="form-control" 
+                                        formControlName="password" 
+                                        type="password" name="password" id="password" 
+                                        [ngClass]="{
+                                            'is-invalid':(f['password'].touched && f['password'].invalid) 
+                                          }" >
+
+                                          <div
+                                          *ngIf="f['password'].touched && f['password'].invalid"
+                                          class="invalid-feedback"
+                                          >
+                                            <div
+                                            *ngIf="f['password'].errors && f['password'].errors['required']"
+                                            >
+                                              El campo es requerido.
+                                            </div>
+                                            <div
+                                              *ngIf="f['password'].errors && f['password'].errors['minlength']"
+                                            >
+                                              La cantidad minima de caracteres es 5.
+                                            </div>
+                                          </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="form-group local-forms">
+                                        <label for="confirm_password" >Confirmar Contraseña </label>
+                                        <input class="form-control"
+                                        formControlName="confirm_password" 
+                                        type="password"  name="confirm_password" id="confirm_password"
+                                        [ngClass]="{
+                                            'is-invalid':(f['confirm_password'].touched && f['confirm_password'].invalid) 
+                                          }" >
+
+                                          <div
+                                          *ngIf="f['confirm_password'].touched && f['confirm_password'].invalid"
+                                          class="invalid-feedback"
+                                          >
+                                            <div
+                                            *ngIf="f['confirm_password'].errors && f['confirm_password'].errors['required']"
+                                            >
+                                              El campo es requerido.
+                                            </div>
+                                            <div
+                                              *ngIf="f['confirm_password'].errors && f['confirm_password'].errors['minlength']"
+                                            >
+                                              La cantidad minima de caracteres es 5.
+                                            </div>
+                                          </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label for="birth_date" >Fecha de Nacimiento<span class="login-danger">*</span></label>
+                                        <input class="form-control datetimepicker"
+                                        formControlName="birth_date" 
+                                        name="birth_date" id="birth_date" type="text" matInput [matDatepicker]="picker" 
+                                        [ngClass]="{
+                                            'is-invalid':(f['birth_date'].touched && f['birth_date'].invalid) 
+                                          }"  >
+                                        <mat-datepicker #picker></mat-datepicker>
+                                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <div
+                                        *ngIf="f['birth_date'].touched && f['birth_date'].invalid"
+                                        class="invalid-feedback"
+                                        >
+                                          <div
+                                          *ngIf="f['birth_date'].errors && f['birth_date'].errors['required']"
+                                          >
+                                            El campo es requerido.
+                                          </div>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group select-gender ">
+                                        <label for="gender" class="gen-label">Genero<span class="login-danger">*</span></label>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" name="gender" formControlName="gender" value="M"
+                                                [ngClass]="{
+                                                    'is-invalid':(f['gender'].touched && f['gender'].invalid) 
+                                                  }" 
+                                                   class="form-check-input">Masculino
+                                            </label>
+                                            
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" name="gender" formControlName="gender" value="F" 
+                                                class="form-check-input"
+                                                [ngClass]="{
+                                                    'is-invalid':(f['gender'].touched && f['gender'].invalid) 
+                                                  }" >Femenino
+                                            </label>
+                                        </div>
+                                        <div
+                                        *ngIf="f['gender'].touched && f['gender'].invalid"
+                                        class="invalid-ckeck"
+                                        >
+                                          <div
+                                          *ngIf="f['gender'].errors && f['gender'].errors['required']"
+                                          >
+                                            El campo es requerido.
+                                          </div>
+                                          
+                                        </div>
+                                      
+                                    </div>
+
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                         <label  for="education">Educación <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  name="education" id="education"
+                                        formControlName="education" [ngClass]="{
+                                            'is-invalid':(f['education'].touched && f['education'].invalid) 
+                                          }" >
+
+                                          <div
+                                          *ngIf="f['education'].touched && f['education'].invalid"
+                                          class="invalid-feedback"
+                                          >
+                                            <div
+                                            *ngIf="f['education'].errors && f['education'].errors['required']"
+                                            >
+                                              El campo es requerido.
+                                            </div>
+                                            <div
+                                              *ngIf="f['education'].errors && f['education'].errors['maxlength']"
+                                            >
+                                              La maxima cantidad de caracteres es 255.
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-12 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label for="designation">Cargo <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" name="designation" id="designation" 
+                                        formControlName="designation" [ngClass]="{
+                                            'is-invalid':(f['designation'].touched && f['designation'].invalid) 
+                                          }"
+                                        >
+                                        <div
+                                        *ngIf="f['designation'].touched && f['designation'].invalid"
+                                        class="invalid-feedback"
+                                        >
+                                          <div
+                                          *ngIf="f['designation'].errors && f['designation'].errors['required']"
+                                          >
+                                            El campo es requerido.
+                                          </div>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                         <label  for="role_id">Rol <span class="login-danger">*</span></label>
+                                       
+                                        <md-select  
+                                        [id]="'role_id'"
+                                        [keyAttr]="'id'"
+                                        [displayAttr]="'name'"
+                                        [placeholder]="'Roles'"
+                                        [data]="selectedRole" class="form-control select"
+                                        formControlName="role_id" [ngClass]="{
+                                            'is-invalid':(f['role_id'].touched && f['role_id'].invalid) 
+                                          }"
+                                        >
+                                        </md-select>
+                                        <div
+                                        *ngIf="f['role_id'].touched && f['role_id'].invalid"
+                                        class="invalid-feedback"
+                                        >
+                                          <div
+                                          *ngIf="f['role_id'].errors && f['role_id'].errors['required']"
+                                          >
+                                            El campo es requerido.
+                                          </div>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                         <label  for="role_id">Especialidad <span class="login-danger">*</span></label>
+                                       
+                                        <md-select  
+                                        [id]="'specialty_id'"
+                                        [keyAttr]="'id'"
+                                        [displayAttr]="'name'"
+                                        [placeholder]="'Especialidades'"
+                                        [data]="selectedSpecialty" class="form-control select"
+                                        formControlName="specialty_id" [ngClass]="{
+                                            'is-invalid':(f['specialty_id'].touched && f['specialty_id'].invalid) 
+                                          }"
+                                        >
+                                        </md-select>
+                                        <div
+                                        *ngIf="f['specialty_id'].touched && f['specialty_id'].invalid"
+                                        class="invalid-feedback"
+                                        >
+                                          <div
+                                          *ngIf="f['specialty_id'].errors && f['specialty_id'].errors['required']"
+                                          >
+                                            El campo es requerido.
+                                          </div>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group local-forms">
+                                        <label for="address">Dirección  <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" rows="3" cols="30"
+                                        name="address" id="address"
+                                        formControlName="address" [ngClass]="{
+                                            'is-invalid':(f['address'].touched && f['address'].invalid) 
+                                          }"
+                                        ></textarea>
+                                        <div
+                                          *ngIf="f['address'].touched && f['address'].invalid"
+                                          class="invalid-feedback"
+                                          >
+                                            <div
+                                            *ngIf="f['address'].errors && f['address'].errors['required']"
+                                            >
+                                              El campo es requerido.
+                                            </div>
+                                            <div
+                                              *ngIf="f['address'].errors && f['address'].errors['maxlength']"
+                                            >
+                                              La maxima cantidad de caracteres es 255.
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                               
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="form-group local-top-form">
+                                        <label for="file-avatar" class="local-top">Avatar</label>
+             
+                                        <div class="upload-avatar" >
+                                            <img [src]="avatarURL"  alt="avatar"  >
+                                            <input type="file" id="file-avatar" (change)="onloadFile($event)">
+                                            <label for="file-avatar" class=" btn btn-primary "
+                                            [ngClass]="{
+                                                'is-invalid':(f['avatar'].touched && f['avatar'].invalid) 
+                                              }" 
+                                            >
+                                                    <i class = "fa fa-camera" style = "color: #fff;">
+                                                    </i>
+                                            </label>
+                                          </div>
+                                        
+                                    </div>
+                                </div>
+                           
+                                <div class="col-12">
+                                    <div class="doctor-submit text-end">
+                                        <button type="submit" 
+                                        [disabled]="form.touched  && form.invalid "
+                                        class="btn btn-primary submit-form me-2">Guardar</button>
+                                        <button type="submit"
+                                        (click)="onCancel()"
+                                         class="btn btn-primary cancel-form">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>							
+            </div>					
+        </div>
+
+
+
+        <div class="row">
+          <div class="col-sm-12">
+          
+              <div class="card card-table show-entire">
+                  <div class="card-body">
+                  
+                      <!-- Table Header -->
+                      <div class="page-table-header mb-2">
+                          <div class="row align-items-center">
+                              <div class="col">
+                                  <div class="doctor-table-blk">
+                                      <h3>Disponibilidad de horario</h3>
+                                   
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- /Table Header -->
+                      
+                      <div class="table-responsive">
+                          <table matSort  class="table border-0 custom-table comman-table datatable mb-0">
+                              <thead>
+                                  <tr>                                     
+                                      <th >DIAS/HORAS</th>
+                                      <ng-container *ngFor="let day of day_week" >
+                                        <th [class]="day.color" >{{day.name}}</th>
+                                      </ng-container>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <ng-container *ngFor="let hour of getHours()">
+                                    <tr>
+                                      <td>
+                                      
+                                       <div class="checkbox">
+                                        <label>
+                                          <input type="checkbox" name="checkbox"  [checked]="toggleAllSelection(hour)" (click)="onSelectionAll($event,hour)" >  {{ hour}}
+                                        </label>
+                                      </div>
+                                      </td>
+                                      <ng-container *ngFor="let day of getDays(hour)" >
+                                        <td>
+                                          <div class="checkbox">
+                                            <label>
+                                              <input type="checkbox" name="checkbox" [checked]="toggleSelection(day, hour)" (click)="onSelection($event,day, hour)" > {{ hour }} TODOS
+                                            </label>
+                                          </div>
+                                          <br>
+                                        <ng-container *ngFor="let item of schedules[hour][day]" >
+                                          <div class="checkbox">
+                                            <label>
+                                              <input type="checkbox" name="checkbox" [(ngModel)]="item.selected" > {{item.hour_start}} - {{item.hour_end}}
+                                            </label>
+                                          </div>
+                                         
+
+                                          
+                                        </ng-container>
+                                      </td>
+                                      </ng-container>
+                                    
+                                    </tr>
+                                  </ng-container>
+                                      
+                        
+                               
+                              </tbody>
+                          </table>
+                          <div class="table_footer">
+              
+                            </div>
+                      </div>
+                  </div>
+              </div>							
+          </div>					
+      </div>
+
+    </div>
+</div>
+ 
