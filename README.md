@@ -1,5 +1,24 @@
 # PreclinicAngular
 
+- **preview**
+  
+ Login
+
+  ![preview img](/preview/login.png)
+  
+  Horario 
+
+  ![preview img](/preview/horario-doctor.png)
+ 
+ Paciente
+
+  ![preview img](/preview/paciente-create.png)
+  
+ Validaciones
+
+  ![preview img](/preview/paciente-validacion.png)
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.1.
 
 ## Development server
