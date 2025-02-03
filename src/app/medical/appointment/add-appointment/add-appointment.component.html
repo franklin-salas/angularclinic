@@ -1,1 +1,339 @@
-<p>add-appointment works!</p>
+<div class="page-wrapper">
+    <div class="content">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="breadcrumb">
+                        <!-- <li class="breadcrumb-item"><a [routerLink]="routes.serviceList">Servicio </a></li> -->
+                        <li class="breadcrumb-item"><i class="feather icon-chevron-right"></i></li>
+                        <li class="breadcrumb-item active">Registar Cita Medica</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+       
+                        <form  [formGroup]="form" (ngSubmit)="formSubmit()">
+                          <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                            <div class="row ">
+                                <div class="col-12">
+                                    <div class="form-heading">
+                                        <h4>Registrar Servicio </h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-12 col-md-3 col-xl-3">
+                                    <div class="form-group local-forms">
+                                        <label for="date_appointment" >Fecha de cita medica<span class="login-danger">*</span></label>
+                                        <input class="form-control datetimepicker"
+                                        formControlName="date_appointment" 
+                                        name="date_appointment" id="date_appointment" type="text" matInput [matDatepicker]="picker" 
+                                        [ngClass]="{
+                                            'is-invalid':(f['date_appointment'].touched && f['date_appointment'].invalid) 
+                                          }"  >
+                                        <mat-datepicker #picker></mat-datepicker>
+                                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <div
+                                        *ngIf="f['date_appointment'].touched && f['date_appointment'].invalid"
+                                        class="invalid-feedback"
+                                        >
+                                          <div
+                                          *ngIf="f['date_appointment'].errors && f['date_appointment'].errors['required']"
+                                          >
+                                            El campo es requerido.
+                                          </div>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3 col-xl-3   ">  
+                                    <div class="form-group local-forms">
+                                        <label for="hour_id"> Hora<span class="login-danger">*</span></label>
+                                        <md-select  
+                                        id="hour_id"
+                                        [keyAttr]="'id'"
+                                        [displayAttr]="'name'"
+                                        [placeholder]="'Horas'"
+                                        [data]="hourList"
+                                        class="form-control select"
+                                        formControlName="hour_id" [ngClass]="{
+                                            'is-invalid':(f['hour_id'].touched && f['hour_id'].invalid) 
+                                          }"
+                                        >
+                                        </md-select>
+                                           <div
+                                           *ngIf="f['hour_id'].touched && f['hour_id'].invalid"
+                                           class="invalid-feedback"
+                                           >
+                                             <div
+                                             *ngIf="f['hour_id'].errors && f['hour_id'].errors['required']"
+                                             >
+                                               El campo es requerido.
+                                             </div>
+                                         
+                                           </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3 col-xl-3">
+                                    <div class="form-group local-forms">
+                                         <label  for="specialty_id">Especialidad <span class="login-danger">*</span></label>
+                                        <md-select  
+                                        id='specialty_id'
+                                        [keyAttr]="'id'"
+                                        [displayAttr]="'name'"
+                                        [placeholder]="'Especialidades'"
+                                        [data]="specialtyList"
+                                        class="form-control select"
+                                        formControlName="specialty_id" [ngClass]="{
+                                            'is-invalid':(f['specialty_id'].touched && f['specialty_id'].invalid) 
+                                          }"
+                                        >
+                                        </md-select>
+                                        <div
+                                        *ngIf="f['specialty_id'].touched && f['specialty_id'].invalid"
+                                        class="invalid-feedback"
+                                        >
+                                          <div
+                                          *ngIf="f['specialty_id'].errors && f['specialty_id'].errors['required']"
+                                          >
+                                            El campo es requerido.
+                                          </div>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-2 col-xl-2">  
+                                  <div class="doctor-submit">
+                                    <a  class="btn btn-primary submit-list-form me-2" (click)="updateTableDoctor()"> Buscar</a>
+                                  </div>
+                              
+                                   
+                                
+                              </div>
+                                </div>
+     
+                              </div>
+                            </div>							
+                        </div>					
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <div class="card-box">
+                              <div class="card-block">
+                                  <h4 class="card-title">Doctores</h4>
+                            <div class="table-responsive">
+                              <table  matSort (matSortChange)="sortDataDoctor($event)" class="table border-0 custom-table comman-table datatable mb-0">
+                                  <thead>
+                                      <tr>
+                                          
+                                          <th mat-sort-header="full_name">Nombre</th>
+                                          <th mat-sort-header="specialty_name">Especialidad</th>
+                                          <th mat-sort-header="avalible">Disponibilidad</th>
+                                          
+                                          <th ></th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                       <tr *ngFor="let data of doctorList">
+                                          
+                                          <td class="profile-image"><img width="28" height="28" [src]="data.avatar" class="rounded-circle m-r-5" alt=""> {{data.full_name}}</td>
+                                          <td>{{data.specialty_name}}</td>
+                                          <td class="text-end">{{data.avalible}}</td>
+                                        
+                                          <td class="text-end">
+
+                                            <div class="invoices-create-btn">
+                                              <a class="invoices-preview-link" href="javascript:void(0);" ><i class="fa fa-eye"></i> Revisar</a>
+                                                  </div>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                              <div class="table_footer">
+                                  <div class="col-sm-12 col-md-5">
+                                    <div class="dataTables_info">
+                                      Showing {{ fromDoctor }} to
+                                      {{ toDoctor }} of
+                                      {{ totalDataDoctor }} entries
+                                    </div>
+                                  </div>
+                  
+                                  <div class="col-sm-12 col-md-7">
+                                    <div class="pagination_section">
+                                      <ul class="pagination">
+                                        <li
+                                          class="page-item"
+                                          [ngClass]="{
+                                            disabled: currentPageDoctor === 1
+                                          }"
+                                        >
+                                          <a
+                                            (click)="getMoreDataDoctor('previous')"
+                                            class="page-link"
+                                            href="javascript:void(0);"
+                                            tabindex="-1"
+                                            >Previous</a
+                                          >
+                                        </li>
+                  
+                                        <ng-container
+                                          *ngFor="let item of pageNumberArrayDoctor; let i = index"
+                                        >
+                                          <li
+                                            class="page-item"
+                                            [class.active]="item === currentPageDoctor"
+                                            [ngClass]="
+                                              (pageNumberArrayDoctor[currentPageDoctor - 2] > item &&
+                                                item !== 1 &&
+                                                pageNumberArrayDoctor.length > 6) ||
+                                              (pageNumberArrayDoctor[currentPageDoctor] < item &&
+                                                item !== 1 &&
+                                                pageNumberArrayDoctor.length > 6 &&
+                                                pageNumberArrayDoctor.length !== item)
+                                                ? 'hide-page-no'
+                                                : 'show-page-no'
+                                            "
+                                          >
+                                            <a
+                                              (click)="moveToPageDoctor(item)"
+                                              class="page-link"
+                                              href="javascript:void(0);"
+                                            >
+                                              {{ item }}
+                                            </a>
+                                          </li>
+                                          <li
+                                            class="page-item"
+                                            *ngIf="
+                                              i === 0 &&
+                                              pageNumberArrayDoctor.length > 6 &&
+                                              currentPageDoctor > 2
+                                            "
+                                            [hidden]="currentPageDoctor === 1"
+                                            (click)="moveToPageDoctor(currentPageDoctor - 2)"
+                                        (keyup.enter)="moveToPageDoctor(currentPageDoctor - 2)"  
+                                            (keyup.enter)="moveToPageDoctor(currentPageDoctor - 2)"
+                                            tabindex="0"
+                                          >
+                                            <a class="page-link" href="javascript:void(0);">
+                                              ...
+                                            </a>
+                                          </li>
+                                          <li
+                                            *ngIf="
+                                              i === pageNumberArrayDoctor.length - 2 &&
+                                              pageNumberArrayDoctor.length > 6
+                                            "
+                                            [hidden]="
+                                              currentPageDoctor >=
+                                                pageNumberArrayDoctor[pageNumberArrayDoctor.length - 2] ||
+                                              totalDataDoctor < toDoctor
+                                                
+                                            "
+                                            class="page-item"
+                                            (click)="moveToPageDoctor(currentPageDoctor + 2)"(keyup.enter)="moveToPageDoctor(currentPageDoctor + 2)"  
+                                            (keyup.enter)="moveToPageDoctor(currentPageDoctor + 2)"
+                                            tabindex="0"
+                                          >
+                                            <a class="page-link" href="javascript:void(0);">
+                                              ...
+                                            </a>
+                                          </li>
+                                        </ng-container>
+                  
+                                        <li
+                                          class="page-item"
+                                          [ngClass]="{
+                                            disabled:
+                                              currentPageDoctor ===
+                                                pageNumberArrayDoctor[pageNumberArrayDoctor.length - 1] ||
+                                                doctorList.length === 0
+                                          }"
+                                        >
+                                          <a
+                                            (click)="getMoreDataDoctor('next')"
+                                            class="page-link"
+                                            href="javascript:void(0);"
+                                            >Next
+                                          </a>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                          </div>
+                            </div>
+                              </div>
+
+
+                          </div>
+                          <div class="col-4">
+                            <div class="card-box">
+                              <div class="card-block">
+                                  <h4 class="card-title">Horarios</h4>
+                                  <div class="table-responsive">
+                                      <table class="table border-0 custom-table comman-table datatable mb-0 table-hover mb-0 ">
+                                          <thead>
+                                              <tr>
+                                                  <th>Hora</th>
+                                                 
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                              <tr>
+                                                  <td><div class="checkbox">
+                                                    <label>
+                                                      <input type="checkbox" name="checkbox"  > 08:00:00 - 08:00:00 
+                                                    </label>
+                                                  </div></td>
+                                                  
+                                              </tr>
+                                              <tr>
+                                                <td><div class="checkbox">
+                                                  <label>
+                                                    <input type="checkbox" name="checkbox"  > 08:00:00 - 08:00:00 
+                                                  </label>
+                                                </div></td>
+                                                  
+                                              </tr>
+                                              <tr>
+                                                <td><div class="checkbox">
+                                                  <label>
+                                                    <input type="checkbox" name="checkbox"  > 08:00:00 - 08:00:00 
+                                                  </label>
+                                                </div></td>
+                                                  
+                                              </tr>
+                                          </tbody>
+                                      </table>
+                                  </div>
+                              </div>
+                          </div>
+                          </div>
+                        </div>
+                             
+                          
+                               
+                          <div class="row">
+                            <div class="col-12 col-md-12 col-xl-12 ">
+                              <div class="doctor-submit text-end">
+                                  <button type="submit"
+                                  [disabled]="form.touched && form.invalid "
+                                   class="btn btn-primary submit-form me-2">Guardar</button>
+                                  <button type="submit"
+                                  (click)="onCancel()"
+                                   class="btn btn-primary cancel-form">Cancel</button>
+                              </div>
+                          </div>
+                          </div>
+                            
+                        </form>
+  
+    </div>
+</div>

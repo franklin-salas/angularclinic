@@ -36,14 +36,12 @@ export class AddPatientComponent implements OnInit {
     this.buildFormFields();
 
     this.roleSevice.selectRolesListStaff().subscribe({
-    next:({data}: any) => {
-    
+    next:({data}: any) => {    
         this.selectedRole = data;
-   
-     
+
     },
     error:(error:any)=> {
-      showAlertError(error);
+      // showAlertError(error);
     }
   })
   
@@ -63,8 +61,8 @@ private buildFormFields() {
     birth_date: ['', [Validators.required]],
     gender: ['', [Validators.required]],
     address: ['', [Validators.required,Validators.maxLength(255)]],
-    antecedent_family: ['', [Validators.required,Validators.maxLength(500)]],
-    antecedent_allergy: ['', [Validators.required,Validators.maxLength(500)]],
+    antecedent_family: ['SA', [Validators.required,Validators.maxLength(500)]],
+    antecedent_allergy: ['SA', [Validators.required,Validators.maxLength(500)]],
     avatar: ['', []],
  
     
@@ -137,7 +135,7 @@ private buildFormFields() {
       },
       error: error => {
         
-        showAlertError(error);
+        // showAlertError(error);
       }
      }
     );

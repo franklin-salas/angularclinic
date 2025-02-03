@@ -73,7 +73,7 @@ export class AddRoleUserComponent  implements OnInit{
         },
         error: error => {
           
-          showAlertError(error);
+          // showAlertError(error);
         }
        }
       );

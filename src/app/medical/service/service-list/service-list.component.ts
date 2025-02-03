@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
 import { pageSelection } from '@shared/models/models';
-import { routes } from 'src/app/shared/routes/routes';
+import { ServiceList } from '@shared/models/service.model';
+import { routes } from '@shared/routes/routes';
+import { ServiceService } from '../services/service.service';
+import { Router } from '@angular/router';
+import { Sort } from '@angular/material/sort';
 import { sweet } from '@shared/utils/sweet.util';
 
-import { SpecialtyList } from '@shared/models/specialty.model';
-import { SpecialtyService } from '../services/specialty.service';
 @Component({
-  selector: 'app-specialty-list',
-  templateUrl: './specialty-list.component.html',
-  styleUrls: ['./specialty-list.component.scss']
+  selector: 'app-service-list',
+  templateUrl: './service-list.component.html',
+  styleUrls: ['./service-list.component.scss']
 })
-export class SpecialtyListComponent  implements OnInit{
+export class ServiceListComponent implements OnInit {
   public routes = routes;
-  public specialtyList: Array<SpecialtyList> = [];
-  dataSource!: MatTableDataSource<SpecialtyList>;
-
+  public serviceList: Array<ServiceList> = [];
+  dataSource!: MatTableDataSource<ServiceList>;
+  
   public searchDataValue = '';
  
   public pageSize = 5;
@@ -37,11 +37,12 @@ export class SpecialtyListComponent  implements OnInit{
   public from= 0;
   public to= 0;
   constructor(
-    private specialtyService: SpecialtyService,
+    private serviceService: ServiceService,
     public router: Router
   ){
 
   }
+  
   ngOnInit() {
    this.getTableData();
   }
@@ -49,14 +50,14 @@ export class SpecialtyListComponent  implements OnInit{
   private getTableData(page = 1): void {
   
     this.currentPage = page;
-    this.specialtyService.listSpecialty(this.currentPage, this.pageSize, this.searchDataValue, this.sortBy, this.sortDirection).subscribe({
+    this.serviceService.list(this.currentPage, this.pageSize, this.searchDataValue, this.sortBy, this.sortDirection).subscribe({
     next:({data, pagination}: any) => {
       this.totalData = pagination.total;
-      this.specialtyList = data;
+      this.serviceList = data;
       this.from = pagination.from;
       this.to = pagination.to;
       console.log({pagination})
-      this.dataSource = new MatTableDataSource<any>(this.specialtyList);
+      this.dataSource = new MatTableDataSource<any>(this.serviceList);
       this.calculateTotalPages(this.totalData, this.pageSize);
     },
     error:(error:any)=> {
@@ -126,7 +127,7 @@ export class SpecialtyListComponent  implements OnInit{
       this.totalPages = Math.trunc(this.totalPages + 1);
     }
     /* eslint no-var: off */
-    for (var i = 1; i <= this.totalPages; i++) {
+    for (let i = 1; i <= this.totalPages; i++) {
       const limit = pageSize * i;
       const skip = limit - pageSize;
       this.pageNumberArray.push(i);
@@ -139,20 +140,20 @@ export class SpecialtyListComponent  implements OnInit{
     sweet.fire({
       icon: "warning",
       title: "Eliminar",
-      text: `Estas seguro de eliminar la Especialidad : ${data.name} ?`,
+      text: `Estas seguro de eliminar el Servicio : ${data.name} ?`,
       showCancelButton: true,
       background: "#fff",
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
+ 
       if (result.isConfirmed) {
-        this.deleteSpecialty(data.id)
+        this.deleteService(data.id)
       } 
     });
 
   }
 
-  private deleteSpecialty(id:number):void {
-    this.specialtyService.deleteSpecialty(id).subscribe( 
+  private deleteService(id:number):void {
+    this.serviceService.delete(id).subscribe( 
       {
        next: resp => {
         this.updateTable()
@@ -160,12 +161,9 @@ export class SpecialtyListComponent  implements OnInit{
        },
        error: error => {
         this.updateTable()
-        // showAlertError(error);
-        
          
        }
       }
      )
   }
-  
 }

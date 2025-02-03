@@ -6,6 +6,7 @@ import { AppointmentComponent } from '../appointment/appointment.component';
 import { AddAppointmentComponent } from './add-appointment/add-appointment.component';
 import { EditAppointmentComponent } from './edit-appointment/edit-appointment.component';
 import { AppointmentListComponent } from './appointment-list/appointment-list.component';
+import { SharedModule } from '@shared/shared.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { AppointmentListComponent } from './appointment-list/appointment-list.co
   ],
   imports: [
     CommonModule,
-    AppointmentRoutingModule
+    AppointmentRoutingModule,
+    SharedModule
   ]
 })
 export class AppointmentModule { }

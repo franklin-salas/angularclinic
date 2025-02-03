@@ -1284,6 +1284,44 @@ export class DataService {
           ],
         },
         {
+          menuValue: 'Servicio',
+          hasSubRoute: true,
+          showSubRoute: false,
+          base: 'service',
+          img: 'assets/img/icons/menu-icon-06.svg',
+          subMenus: [
+            {
+              menuValue: 'Listar Servicio',
+              route: routes.serviceList,
+              base: routes.serviceList,
+              permision: 'list_service',
+              showNav: true,
+            },
+            {
+              menuValue: 'Agregar Servicio',
+              route: routes.addService,
+              base: routes.addService,
+              permision: 'register_service',
+              showNav: true,
+            },
+            {
+              menuValue: 'Edit Service',
+              route: '',
+              base: '',
+              permision: 'edit_service',
+              showNav: false,
+            },
+            {
+              menuValue: 'Delete Service',
+              route: '',
+              base: '',
+              permision: 'delete_service',
+              showNav: false,
+            },
+           
+          ],
+        },
+        {
           menuValue: 'Doctor',
           hasSubRoute: true,
           showSubRoute: false,

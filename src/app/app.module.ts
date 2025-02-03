@@ -11,9 +11,10 @@ import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es-BO';
 import * as moment from 'moment';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { NotiflixInit } from '@shared/utils/notiflix-init.util';
 registerLocaleData(localeEs, 'es-BO');
 moment.locale('es-BO');
-
+NotiflixInit.notiflixLoadingInit();
  const CUSTOM_DATE_FORMATS = {
   parse: {
     dateInput: 'DD/MM/YYYY',

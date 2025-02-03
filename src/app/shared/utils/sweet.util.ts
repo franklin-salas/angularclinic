@@ -8,6 +8,7 @@ export const  sweet = Swal.mixin({
     },
     didOpen: (popup) => {
       popup.style.border = '1px solid #e5e5e5'; // Aplica el borde directamente
+      popup.style.borderRadius ='0.9rem';// Aplica el borde directamente
     },
     backdrop: `rgba(255,255,255,0.6)`,
     buttonsStyling: true,
@@ -16,13 +17,15 @@ export const  sweet = Swal.mixin({
   });
 
   export const showAlertError = (error:any) => {
-    console.log({error})
+ 
     switch (error.status) {
       case 0:
         sweet.fire("Error!","Error de conexión", "error");
         break;
       case 500:
         sweet.fire("Error!","Error de servidor", "error");
+        break;
+        case 401:
         break;
       default:
         sweet.fire("Error!", error.error.message, "error");

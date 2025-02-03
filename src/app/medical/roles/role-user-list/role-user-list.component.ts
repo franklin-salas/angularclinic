@@ -50,7 +50,7 @@ export class RoleUserListComponent implements OnInit {
       this.getTableDataGeneral();
     },
     error:(error:any)=> {
-      showAlertError(error);
+      // showAlertError(error);
     }}
   );
   }
@@ -176,7 +176,7 @@ export class RoleUserListComponent implements OnInit {
        },
        error: error => {
         this.updateRoles()
-        showAlertError(error);
+        // showAlertError(error);
         
          
        }

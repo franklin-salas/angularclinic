@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Loading } from 'notiflix';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { routes } from 'src/app/shared/routes/routes';
 
@@ -43,7 +44,7 @@ export class LoginComponent implements OnInit {
       this.form.markAllAsTouched();
       return;
     }
-    
+    Loading.circle();
       this.error = false;
       const email = this.form.value.email ? this.form.value.email : '';
       const password = this.form.value.password ? this.form.value.password : '';

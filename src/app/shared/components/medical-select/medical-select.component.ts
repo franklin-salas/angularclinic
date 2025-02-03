@@ -1,5 +1,5 @@
-import { Component, forwardRef, HostBinding , Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import {  ControlValueAccessor, NG_VALUE_ACCESSOR,  } from '@angular/forms';
 
 @Component({
   selector: 'md-select',
@@ -28,27 +28,14 @@ export class MedicalSelectComponent implements OnInit,ControlValueAccessor {
   private onTouchedCb?:()=> void;
   private onChangeCb?:(obj:any)=> void;
 
-  // control = new FormControl();
   constructor() {}
 
-
-
-  // registerOnValidatorChange?(fn: () => void): void {
-  //   throw new Error('Method not implemented.');
-  // }
 
 
   ngOnInit() {
   
    
   }
-
-  // ngOnChanges(changes: SimpleChanges) {
-  //   if (changes['data']) {
-  //     // Maneja el cambio en la lista de usuarios
-  //     console.log('Users updated:', this.data);
-  //   }
-  // }
 
 
   onTouch(){

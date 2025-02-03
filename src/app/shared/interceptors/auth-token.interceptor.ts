@@ -11,6 +11,8 @@ import { AuthService } from '@shared/auth/auth.service';
 import { Router } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
 import { routes } from '@shared/routes/routes';
+import { Loading } from 'notiflix';
+import { sweet } from '@shared/utils/sweet.util';
 
 @Injectable()
 export class AuthTokenInterceptor implements HttpInterceptor {
@@ -33,11 +35,22 @@ export class AuthTokenInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
-          // Token has expired or is invalid
-          this.authService.logout();
-          this.router.navigate([routes.login]);
+        switch (error.status) {
+          case 0:
+            sweet.fire("Error!","Error de conexión", "error");
+            break;
+          case 500:
+            sweet.fire("Error!",error.error.message, "error");
+            break;
+            case 401:
+              this.authService.logout();
+              this.router.navigate([routes.login]);
+            break;
+          default:
+            sweet.fire("Error!", error.error.message, "error");
+            break;
         }
+        Loading.remove();
         return throwError(()=>error);
       })
     );

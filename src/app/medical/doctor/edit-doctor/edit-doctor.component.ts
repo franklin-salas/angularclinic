@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RolesService } from '@modules/roles/services/roles.service';
 import { routes } from '@shared/routes/routes';
 import { DoctorService } from '../services/doctor.service';
-import { showAlertError, sweet } from '@shared/utils/sweet.util';
+import { sweet } from '@shared/utils/sweet.util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
@@ -88,7 +88,7 @@ export class EditDoctorComponent implements OnInit {
               this.loadFormFields(data);
             },
             error: (error) => {
-              showAlertError(error);
+              // showAlertError(error);
             }
            
           })
@@ -110,7 +110,7 @@ export class EditDoctorComponent implements OnInit {
         
     },
     error:(error:any)=> {
-      showAlertError(error);
+     
     }
   });
 
@@ -119,7 +119,7 @@ export class EditDoctorComponent implements OnInit {
         this.selectedSpecialty = data;
     },
     error:(error:any)=> {
-      showAlertError(error);
+      
     }
   });
 
@@ -161,7 +161,7 @@ protected loadFormFields(data: Doctor| null) {
   
   if(!data) return;
   console.log("editt");
-  console.log(data.schedule_day_hours);
+  console.log(data);
   this.schedule_day_hours = data.schedule_day_hours;
 
   this.avatarURL = data.url_avatar;
@@ -189,7 +189,7 @@ protected loadFormFields(data: Doctor| null) {
       this.organizeSchedules(data);
     },
     error:(error:any)=> {
-      showAlertError(error);
+      // showAlertError(error);
     }
   });
 
@@ -263,7 +263,7 @@ dateFormats(dateString: string, inputFormat: string, outputFormat: string): Date
       },
       error: error => {
         
-        showAlertError(error);
+        // showAlertError(error);
       }
      }
     );

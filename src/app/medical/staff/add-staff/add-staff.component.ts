@@ -44,7 +44,7 @@ export class AddStaffComponent implements OnInit {
      
     },
     error:(error:any)=> {
-      showAlertError(error);
+      // showAlertError(error);
     }
   })
   
@@ -139,7 +139,7 @@ private buildFormFields() {
       },
       error: error => {
         
-        showAlertError(error);
+        // showAlertError(error);
       }
      }
     );

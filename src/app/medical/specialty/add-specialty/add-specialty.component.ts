@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { routes } from '@shared/routes/routes';
 import { SpecialtyService } from '../services/specialty.service';
 import { Router } from '@angular/router';
-import { showAlertError, sweet } from '@shared/utils/sweet.util';
+import {  sweet } from '@shared/utils/sweet.util';
+
 
 @Component({
   selector: 'app-add-specialty',
@@ -44,6 +45,7 @@ private buildFormFields() {
 }
 
 
+
   onCancel(){
     this.router.navigate([routes.specialtyList])
   }
@@ -73,7 +75,7 @@ private buildFormFields() {
       },
       error: error => {
         
-        showAlertError(error);
+        // showAlertError(error);
       }
      }
     );

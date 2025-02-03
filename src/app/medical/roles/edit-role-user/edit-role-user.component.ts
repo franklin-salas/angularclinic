@@ -38,7 +38,7 @@ export class EditRoleUserComponent implements OnInit{
               this.permissions = resp.permision_pluck;
             },
             error: (error) => {
-              showAlertError(error);
+              // showAlertError(error);
             }
            
           })
@@ -101,7 +101,7 @@ export class EditRoleUserComponent implements OnInit{
         },
         error: error => {
           // console.log({err});
-          showAlertError(error);
+          // showAlertError(error);
         }
        }
       );

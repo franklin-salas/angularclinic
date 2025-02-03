@@ -155,13 +155,13 @@ export class routes {
   }
 
   public static get addAppointment(): string {
-    return this.baseUrl + '/appointment/add-appointment';
+    return this.baseUrl + '/appointments/add-appointment';
   }
   public static get appointmentList(): string {
-    return this.baseUrl + '/appointment/appointment-list';
+    return this.baseUrl + '/appointments/appointment-list';
   }
   public static get editAppointment(): string {
-    return this.baseUrl + '/appointment/edit-appointment';
+    return this.baseUrl + '/appointments/edit-appointment';
   }
   // ------------------------------------------------
   public static get doctorProfile(): string {
@@ -382,6 +382,18 @@ export class routes {
 
   public static get specialtyList(): string {
     return this.baseUrl + '/specialty/specialty-list';
+  }
+
+  public static get addService(): string {
+    return this.baseUrl + '/service/add-service';
+  }
+
+  public static get editService(): string {
+    return this.baseUrl + '/service/edit-service';
+  }
+
+  public static get serviceList(): string {
+    return this.baseUrl + '/service/service-list';
   }
   // -----------------------------------------------
 

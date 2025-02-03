@@ -35,6 +35,11 @@ const routes: Routes = [{
         import('./specialty/specialty.module').then((m) => m.SpecialtyModule),
     },
     {
+      path: 'service',
+      loadChildren: () =>
+        import('./service/service.module').then((m) => m.ServiceModule),
+    },
+    {
       path: 'doctor',
       loadChildren: () =>
         import('./doctor/doctor.module').then((m) => m.DoctorModule),
@@ -43,6 +48,11 @@ const routes: Routes = [{
       path: 'patient',
       loadChildren: () =>
         import('./patient/patient.module').then((m) => m.PatientModule),
+    },
+    {
+      path: 'appointments',
+      loadChildren: () =>
+        import('./appointment/appointment.module').then((m) => m.AppointmentModule),
     },
 
   ]

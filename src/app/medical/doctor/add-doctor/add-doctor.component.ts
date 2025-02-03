@@ -84,7 +84,7 @@ export class AddDoctorComponent implements OnInit {
         
     },
     error:(error:any)=> {
-      showAlertError(error);
+      // showAlertError(error);
     }
   });
 
@@ -93,7 +93,7 @@ export class AddDoctorComponent implements OnInit {
         this.selectedSpecialty = data;
     },
     error:(error:any)=> {
-      showAlertError(error);
+      // showAlertError(error);
     }
   });
 
@@ -105,7 +105,7 @@ export class AddDoctorComponent implements OnInit {
       // console.log(this.schedules)
     },
     error:(error:any)=> {
-      showAlertError(error);
+      // showAlertError(error);
     }
   });
   
@@ -204,7 +204,7 @@ private buildFormFields() {
       },
       error: error => {
         
-        showAlertError(error);
+        // showAlertError(error);
       }
      }
     );

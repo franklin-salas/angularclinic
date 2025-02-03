@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { routes } from 'src/app/shared/routes/routes';
 import {
   ApexAxisChartSeries,
@@ -17,6 +17,7 @@ import {
 import { Sort } from '@angular/material/sort';
 import { DataService } from 'src/app/shared/data/data.service';
 import { recentPatients, upcomingAppointments } from 'src/app/shared/models/models';
+import { Loading } from 'notiflix';
 export type ChartOptions = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   series: ApexAxisChartSeries | any;
@@ -53,7 +54,7 @@ interface data {
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.scss'],
 })
-export class AdminDashboardComponent {
+export class AdminDashboardComponent implements OnInit {
   public routes = routes;
   public selectedValue ! : string  ;
   @ViewChild('chart') chart!: ChartComponent;
@@ -176,6 +177,9 @@ export class AdminDashboardComponent {
     };
     this.recentPatients = this.data.recentPatients;
     this.upcomingAppointments = this.data.upcomingAppointments;
+  }
+  ngOnInit(): void {
+    Loading.remove();
   }
   
   public sortData(sort: Sort) {

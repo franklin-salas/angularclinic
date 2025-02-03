@@ -51,7 +51,7 @@ export class EditStaffComponent  implements OnInit{
               this.loadFormFields(data);
             },
             error: (error) => {
-              showAlertError(error);
+              // showAlertError(error);
             }
            
           })
@@ -59,7 +59,7 @@ export class EditStaffComponent  implements OnInit{
           /// activeRoute
         },
         error: error => {
-          console.log({error});
+          // console.log({error});
       
           
         }
@@ -71,14 +71,13 @@ export class EditStaffComponent  implements OnInit{
 
     this.roleSevice.selectRolesListStaff().subscribe({
     next:({data}: any) => {
-      // console.log(resp);
-        console.log("Retrasado por 3 segundo.");
+   
         this.selectedList1 = data;
   
      
     },
     error:(error:any)=> {
-      showAlertError(error);
+      // showAlertError(error);
     }
   })
   
@@ -222,9 +221,8 @@ dateFormats(dateString: string, inputFormat: string, outputFormat: string): Date
         });
        
       },
-      error: error => {
-        
-        showAlertError(error);
+      error: error => {  
+        // showAlertError(error);
       }
      }
     );

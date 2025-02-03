@@ -61,7 +61,7 @@ export class PatientListComponent implements OnInit {
       this.calculateTotalPages(this.totalData, this.pageSize);
     },
     error:(error:any)=> {
-      showAlertError(error);
+      // showAlertError(error);
     }}
   );
   }
@@ -162,7 +162,7 @@ export class PatientListComponent implements OnInit {
        },
        error: error => {
         this.updateTable()
-        showAlertError(error);
+        // showAlertError(error);
         
          
        }

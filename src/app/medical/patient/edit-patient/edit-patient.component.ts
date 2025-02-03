@@ -48,7 +48,7 @@ export class EditPatientComponent implements OnInit {
               this.loadFormFields(data);
             },
             error: (error) => {
-              showAlertError(error);
+              // showAlertError(error);
             }
            
           })
@@ -201,7 +201,7 @@ dateFormats(dateString: string, inputFormat: string, outputFormat: string): Date
       },
       error: error => {
         
-        showAlertError(error);
+        // showAlertError(error);
       }
      }
     );

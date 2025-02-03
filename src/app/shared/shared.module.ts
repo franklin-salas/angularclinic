@@ -18,7 +18,7 @@ import { RouterModule } from '@angular/router';
 import { MedicalSelectComponent } from './components/medical-select/medical-select.component';
 import { MedicalSelectMultipleComponent } from './components/medical-select-multiple/medical-select-multiple.component';
 import { MedicalSelectSearchComponent } from './components/medical-select-search/medical-select-search.component';
-import {MatSelectInfiniteScrollModule} from 'ng-mat-select-infinite-scroll';
+
 
 
 @NgModule({
@@ -58,7 +58,7 @@ import {MatSelectInfiniteScrollModule} from 'ng-mat-select-infinite-scroll';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    MatSelectInfiniteScrollModule
+   
     
 
     

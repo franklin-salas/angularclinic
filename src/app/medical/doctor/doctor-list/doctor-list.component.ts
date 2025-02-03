@@ -24,7 +24,7 @@ export class DoctorListComponent implements OnInit {
   public skip = 0;
   public limit: number = this.pageSize;
   public pageIndex = 0;
-  // public serialNumberArray: Array<number> = [];
+
   public currentPage = 1;
   public pageNumberArray: Array<number> = [];
   public pageSelection: Array<pageSelection> = [];
@@ -60,7 +60,7 @@ export class DoctorListComponent implements OnInit {
       this.calculateTotalPages(this.totalData, this.pageSize);
     },
     error:(error:any)=> {
-      showAlertError(error);
+      // showAlertError(error);
     }}
   );
   }
@@ -161,7 +161,7 @@ export class DoctorListComponent implements OnInit {
        },
        error: error => {
         this.updateTable()
-        showAlertError(error);
+        // showAlertError(error);
         
          
        }

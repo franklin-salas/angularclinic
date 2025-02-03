@@ -1,0 +1,195 @@
+<div class="page-wrapper">
+    <div class="content">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="routes.serviceList">Servicio </a></li>
+                        <li class="breadcrumb-item"><i class="feather icon-chevron-right"></i></li>
+                        <li class="breadcrumb-item active">Agregar Servicio</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <div class="row">
+            <div class="col-12">
+            
+                <div class="card">
+                    <div class="card-body">
+                        <form  [formGroup]="form" (ngSubmit)="formSubmit()">
+                            <div class="row ">
+                                <div class="col-12">
+                                    <div class="form-heading">
+                                        <h4>Registrar Servicio </h4>
+                                    </div>
+                                </div>
+                               
+                                <div class="col-12 col-md-8 col-xl-5   ">  
+                                    <div class="form-group local-forms">
+                                        <label for="name"> Nombre<span class="login-danger">*</span></label>
+                                        <input class="form-control" 
+                                        formControlName="name"
+                                        type="text" name="name" id="name"
+                                        [ngClass]="{
+                                            'is-invalid':(f['name'].touched && f['name'].invalid) 
+                                          }"
+                                           >
+                                           <div
+                                           *ngIf="f['name'].touched && f['name'].invalid"
+                                           class="invalid-feedback"
+                                           >
+                                             <div
+                                             *ngIf="f['name'].errors && f['name'].errors['required']"
+                                             >
+                                               El campo es requerido.
+                                             </div>
+                                             <div
+                                            *ngIf="f['name'].errors && f['name'].errors['maxlength']"
+                                          >
+                                            La maxima cantidad de caracteres es 255.
+                                          </div>
+                                           </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4 col-xl-4">
+                                    <div class="form-group local-forms">
+                                         <label  for="specialty_id">Especialidad <span class="login-danger">*</span></label>
+                                        <md-select  
+                                        id='specialty_id'
+                                        [keyAttr]="'id'"
+                                        [displayAttr]="'name'"
+                                        [placeholder]="'Especialidades'"
+                                        [data]="selectedSpecialty"
+                                        class="form-control select"
+                                        formControlName="specialty_id" [ngClass]="{
+                                            'is-invalid':(f['specialty_id'].touched && f['specialty_id'].invalid) 
+                                          }"
+                                        >
+                                        </md-select>
+                                        <div
+                                        *ngIf="f['specialty_id'].touched && f['specialty_id'].invalid"
+                                        class="invalid-feedback"
+                                        >
+                                          <div
+                                          *ngIf="f['specialty_id'].errors && f['specialty_id'].errors['required']"
+                                          >
+                                            El campo es requerido.
+                                          </div>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-3   ">  
+                                  <div class="form-group local-forms">
+                                      <label for="price">Precio<span class="login-danger">*</span></label>
+                                      <input class="form-control" 
+                                      formControlName="price"
+                                      min="0"
+                                      placeholder="0.00"
+                                      type="number" name="price" id="price"
+                                      [ngClass]="{
+                                          'is-invalid':(f['price'].touched && f['price'].invalid) 
+                                        }"
+                                         >
+                                         <div
+                                         *ngIf="f['price'].touched && f['price'].invalid"
+                                         class="invalid-feedback"
+                                         >
+                                           <div
+                                           *ngIf="f['price'].errors && f['price'].errors['required']"
+                                           >
+                                             El campo es requerido.
+                                           </div>
+                                           <div
+                                          *ngIf="f['price'].errors && f['price'].errors['min']">
+                                          El valor mínimo es 0.
+                                        </div>
+                                        <div
+                                          *ngIf="f['price'].errors && f['price'].errors['max']">
+                                          El valor máximo es 1000.
+                                        </div>
+                                        <div
+                                        *ngIf="f['price'].errors && f['price'].errors['pattern']">
+                                         El valor debe tener máximo 2 decimales, formato (#.##).
+                                      </div>
+                                         </div>
+                                  </div>
+                              </div>
+
+                              <div class="col-12 col-md-6 col-xl-12 ">
+                                <div class="form-group select-gender">
+                                    <label for="status" class="gen-label">Estado <span class="login-danger">*</span></label>
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" name="status" id="status" formControlName="status"  value="ACTIVO"
+                                            [ngClass]="{
+                                                'is-invalid':(f['status'].touched && f['status'].invalid) 
+                                              }"  class="form-check-input">Activo
+                                        </label>
+                                    </div>
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" name="status" formControlName="status"  value="INACTIVO"
+                                            [ngClass]="{
+                                                'is-invalid':(f['status'].touched && f['status'].invalid) 
+                                              }" class="form-check-input">Inactivo
+                                        </label>
+                                    </div>
+
+                                    <div
+                                    *ngIf="f['status'].touched && f['status'].invalid"
+                                    class="invalid-ckeck"
+                                    >
+                                      <div
+                                      *ngIf="f['status'].errors && f['status'].errors['required']"
+                                      >
+                                        El campo es requerido.
+                                      </div>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group local-forms">
+                                        <label for="description">Descripción </label>
+                                        <textarea class="form-control" rows="3" cols="30"
+                                        name="description" id="description"
+                                        formControlName="description" [ngClass]="{
+                                            'is-invalid':(f['description'].touched && f['description'].invalid) 
+                                          }"
+                                        ></textarea>
+                                        <div
+                                          *ngIf="f['description'].touched && f['description'].invalid"
+                                          class="invalid-feedback"
+                                          >
+                                            
+                                            <div
+                                              *ngIf="f['description'].errors && f['description'].errors['maxlength']"
+                                            >
+                                              La maxima cantidad de caracteres es 500.
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                               
+                                <div class="col-12 col-md-12 col-xl-12 ">
+                                    <div class="doctor-submit text-end">
+                                        <button type="submit"
+                                        [disabled]="form.touched && form.invalid "
+                                         class="btn btn-primary submit-form me-2">Guardar</button>
+                                        <button type="submit"
+                                        (click)="onCancel()"
+                                         class="btn btn-primary cancel-form">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>							
+            </div>					
+        </div>
+    </div>
+</div>

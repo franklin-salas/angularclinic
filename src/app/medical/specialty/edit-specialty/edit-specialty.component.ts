@@ -36,20 +36,15 @@ export class EditSpecialtyComponent implements OnInit {
           this.form.get('id')?.setValue(resp.id);
           this.specialtyService.getSpecialty(resp.id).subscribe({
             next: ({data}) => {
-              console.log({data})
+         
               this.loadFormFields(data);
-            },
-            error: (error) => {
-              showAlertError(error);
             }
-           
           })
           
           /// activeRoute
         },
         error: error => {
-          console.log({error});
-      
+          console.log({error});  
           
         }
        }
@@ -95,7 +90,7 @@ protected loadFormFields(data: Specialty| null) {
     }
 
     const {id , ...specialty} = this.form.value;
-    console.log(specialty);
+
     this.specialtyService.updateSpecialty(specialty,id).subscribe( 
      {
       next: resp => {
@@ -112,8 +107,8 @@ protected loadFormFields(data: Specialty| null) {
        
       },
       error: error => {
-        
-        showAlertError(error);
+ 
+        // showAlertError(error);
       }
      }
     );
